@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* Smooth, minimal scrollbar */
+::-webkit-scrollbar {
+  width: 8px; /* width of scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* track background */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4b5563; /* thumb color (gray-600) */
+  border-radius: 9999px; /* rounded thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6b7280; /* thumb hover (gray-500) */
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #4b5563 transparent;
+}
