@@ -1,17 +1,34 @@
 import React, { useEffect, useState } from "react";
 
-export default function MailHistory() {
+export default function MailHistory({method}:{ method: "send" | "receive"}) {
   const [history, setHistory] = useState([]);
   const [loading,setloading]=useState(false)
 
-  useEffect(() => {
-    setloading(true)
-  
-    fetch("http://localhost:3001/gethistory")
-      .then((res) => res.json())
-      .then((data) => setHistory(data.data)) 
-      .catch((err) => console.error("Error fetching history:", err)).finally(() => setloading(false))
-  }, []);
+ useEffect(() => {
+  setHistory([])
+  setloading(true)
+
+
+  const url =
+    method == "send"
+      ? "gethistory"
+      : method == "receive"
+      ? "read-mails"
+      : null;
+
+  if (!url) {
+    console.error("Invalid method:", method);
+    setloading(false);
+    return;
+  }
+
+  fetch(`https://email-backend-1h0r.onrender.com/${url}`)
+    .then((res) => res.json())
+    .then((data) => setHistory(data.data))
+    .catch((err) => console.error("Error fetching history:", err))
+    .finally(() => setloading(false));
+}, [method]); 
+
 
   return (
     <div className="p-4">

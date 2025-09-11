@@ -8,9 +8,11 @@ import { Dialog, Transition } from "@headlessui/react";
 import { spawn } from "child_process";
 
 
+
 function Home() {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenimport,setIsOpenimport]=useState(false)
+  const [activeTab, setActiveTab] = useState<"receive" | "send">("receive")
   const [email,setemail]=useState({
     success:false,
     submited:false
@@ -112,6 +114,7 @@ function Home() {
       />
        send mail via excel
         </button>
+   
             
           </div>
         
@@ -146,15 +149,19 @@ function Home() {
           encType="multipart/form-data" 
           onSubmit={handleExcelemail}
           >
-      <h1 className="bg-red-500/10 border border-red-400 text-red-500 rounded-xl p-4 mb-3 text-sm flex flex-col gap-1 shadow-sm">
-  <span className="text-base font-bold flex items-center gap-1">
-    📄 Excel Requirements
-  </span>
-  <span>✅ <b>Email</b> (required)</span>
-  <span>🆗 <b>Subject</b> (optional)</span>
-  <span>🆗 <b>Message</b> (optional)</span>
-  <span>🚫 <b>No Attachments Supported</b></span>
+      <h1 className="bg-orange/10 backdrop-blur-lg border border-yellow-500 text-orange-300 rounded-md p-3 mb-3 text-sm shadow-sm">
+  <div className="flex items-center mb-1">
+    <span className="text-lg mr-2">⚠️</span>
+    <span className="font-bold">Excel Requirements</span>
+  </div>
+  <ul className="ml-6 list-disc">
+    <li><b>Email</b> – required ✅</li>
+    <li><b>Subject</b> – optional 🆗</li>
+    <li><b>Message</b> – optional 🆗</li>
+    <li className="text-red-500"><b>No Attachments Supported</b> 🚫</li>
+  </ul>
 </h1>
+
 
 
        
@@ -237,11 +244,37 @@ function Home() {
                       </svg>
                     </button>
                   </div>
-                  <div className="px-4 sm:px-6 max-h-[80vh] overflow-y-auto">
+                  <div className="px-4 sm:px-6 max-h-[80vh] overflow-y-auto ">
                   
-                      <ul className="space-y-2">
-                        <MailHistory/>
-                      </ul>
+                     <div className="p-4">
+  
+      <div className="flex gap-2 mb-4">
+        <button
+          onClick={() => setActiveTab("receive")}
+          className={`px-4 py-2 rounded-sm font-medium ${
+            activeTab === "receive"
+              ? "bg-blue-600 text-white shadow"
+              : "bg-gray-200 text-gray-700"
+          }`}
+        >
+        Received mails
+        </button>
+
+        <button
+          onClick={() => setActiveTab("send")}
+          className={`px-4 py-2 rounded-sm font-medium ${
+            activeTab === "send"
+              ? "bg-blue-600 text-white shadow"
+              : "bg-gray-200 text-gray-700"
+          }`}
+        >
+        Sent sended mails
+        </button>
+      </div>
+
+
+      <MailHistory method={activeTab} />
+    </div>
                  
                   </div>
                 </Dialog.Panel>
