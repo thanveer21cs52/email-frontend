@@ -273,7 +273,7 @@ function Home() {
       </div>
 
 
-      <MailHistory method={activeTab} />
+      <MailHistory method={activeTab}  loadings={null} fn={null}/>
     </div>
                  
                   </div>
