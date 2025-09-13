@@ -27,7 +27,7 @@ export default function MailHistory({ method, loadings, fn }: {
       return;
     }
 
-    fetch(`https://vercel.com/dt-teams-projects/email-frontend/${url}`)
+    fetch(`https://email-backend-1h0r.onrender.com/${url}`)
       .then((res) => res.json())
       .then((data) => setHistory(data.data))
       .catch((err) => console.error("Error fetching history:", err))
