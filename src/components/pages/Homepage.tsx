@@ -6,6 +6,7 @@ import {
   faInbox,
   faPaperPlane,
   faFileExcel,
+  faEnvelopesBulk
 } from "@fortawesome/free-solid-svg-icons";
 import buildingbg from "../images/bulding1.jpg";
 import { Fragment, useState } from "react";
@@ -66,6 +67,9 @@ function Homepage() {
             >
               <FontAwesomeIcon icon={faFileExcel} /> Send via Excel
             </Link>
+               <Link to="all" onClick={closeDrawer} className="hover:bg-white/20 px-3 py-2 rounded-lg flex items-center gap-2">
+                      <FontAwesomeIcon icon={faEnvelopesBulk} /> all mails
+                    </Link>
           </nav>
         </aside>
 
@@ -115,6 +119,9 @@ function Homepage() {
                     </Link>
                     <Link to="excel" onClick={closeDrawer} className="hover:bg-white/20 px-3 py-2 rounded-lg flex items-center gap-2">
                       <FontAwesomeIcon icon={faFileExcel} /> Send via Excel
+                    </Link>
+                    <Link to="all" onClick={closeDrawer} className="hover:bg-white/20 px-3 py-2 rounded-lg flex items-center gap-2">
+                      <FontAwesomeIcon icon={faEnvelopesBulk} /> all mails
                     </Link>
                   </nav>
                 </Dialog.Panel>

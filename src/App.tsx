@@ -6,6 +6,7 @@ import SendMailViaExcel from "./components/pages/SendMailViaExcel";
 import Home from "./components/Home";
 import Homepage from "./components/pages/Homepage";
 import { Dialog, Transition } from "@headlessui/react";
+import Allmails from "./components/pages/Allmails";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="sent" element={<SentMails />} />
           <Route path="send" element={<SendMail />} />
           <Route path="excel" element={<SendMailViaExcel />} />
+          <Route path="all" element={<Allmails />} />
         </Route>
       </Routes>
     </Router>

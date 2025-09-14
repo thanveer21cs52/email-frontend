@@ -27,7 +27,7 @@ export default function MailHistory({ method, loadings, fn }: {
       return;
     }
 
-    fetch(`http://localhost:3001/${url}`)
+    fetch(`https://email-backend-1h0r.onrender.com/${url}`)
       .then((res) => res.json())
       .then((data) => setHistory(data.data))
       .catch((err) => console.error("Error fetching history:", err))
@@ -85,7 +85,7 @@ export default function MailHistory({ method, loadings, fn }: {
                 <span className="  break-words w-3/4">{item.subject}</span>
               </div>
               <div className="text-xs text-gray-400 text-right">
-                {new Date(item.created_at).toLocaleString()}
+                {new Date(item.created_at||item.received_at).toLocaleString()}
               </div>
             </div>
           ))}
